@@ -1,0 +1,10 @@
+<ul class="list-group">
+  <li
+    (click)="setCurrentCity(city)"
+    *ngFor="let city of cities"
+    [class]="getCurrentCityClass(city)"
+  >
+    {{ city.city_Name }}
+  </li>
+</ul>
+<!-- routerLink="/products/category/{{ cities }}" -->

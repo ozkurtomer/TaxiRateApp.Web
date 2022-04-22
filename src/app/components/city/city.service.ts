@@ -13,7 +13,7 @@ export class CityService {
 
   getCities(): Observable<ListResponseModel<Cities>> {
     return this.httpClient.get<ListResponseModel<Cities>>(
-      environment.apiUrl + '/Cities/getall'
+      environment.apiUrl + '/Cities/getpopularfivecity'
     );
   }
 }

@@ -1,0 +1,47 @@
+<div class="content" *ngIf="dataLoaded">
+  <div class="table-responsive mx-4 mt-5">
+    <h2 class="mb-5 mt-4 text-light">#Son {{ dataCount }} Gönderi</h2>
+
+    <div class="table-responsive">
+      <table class="table table-striped custom-table">
+        <thead>
+          <tr>
+            <th scope="col">Tarih</th>
+            <th scope="col">Şehir</th>
+            <th scope="col">Plaka</th>
+            <th scope="col">Puan</th>
+            <th scope="col">Açıklama</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let post of posts" scope="row">
+            <td>{{ post.post_CreatedDate | date: "dd/MM/yyyy" }}</td>
+
+            <td>{{ post.city.city_Name }}</td>
+
+            <td>{{ post.post_Plate }}</td>
+
+            <td>
+              <!-- @for (int i = 0; i < item.Post_Stars; i++) { -->
+              <i id="star" class="fas fa-star more-star"></i>
+              <!-- } -->
+            </td>
+
+            <td>
+              {{ post.post_Title }}
+              <small class="d-block"
+                >{{ post.post_Description | slice: 0:56 }}...</small
+              >
+            </td>
+
+            <td>
+              <a href="#" class="more">İncele</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

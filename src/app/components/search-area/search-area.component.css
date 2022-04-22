@@ -1,0 +1,109 @@
+::ng-deep .search-area {
+  padding: 1px;
+  border-radius: 10px;
+  overflow: hidden;
+  width: 380px;
+}
+
+::ng-deep .CardInner {
+  padding: 4px 4px;
+  background-color: #e2e9f4;
+}
+
+::ng-deep .Icon {
+  min-width: 46px;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  margin-right: 12px;
+  box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
+  cursor: pointer;
+}
+
+::ng-deep .Icon svg {
+  transform: translate(-1px, -1px);
+}
+
+::ng-deep .InputContainer {
+  width: 100%;
+}
+
+::ng-deep .InputContainer {
+  --top-shadow: inset 1px 1px 3px #c5d4e3, inset 2px 2px 6px #c5d4e3;
+  --bottom-shadow: inset -2px -2px 4px rgba(255, 255, 255, 0.7);
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+::ng-deep .InputContainer:before,
+.InputContainer:after {
+  left: 0;
+  top: 0;
+  display: block;
+  content: "";
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+::ng-deep .InputContainer:before {
+  box-shadow: var(--bottom-shadow);
+}
+
+::ng-deep .InputContainer:after {
+  box-shadow: var(--top-shadow);
+}
+
+::ng-deep header.masthead {
+  position: relative;
+  background-size: cover;
+  border-radius: 10px;
+}
+
+::ng-deep .plate {
+  display: block;
+  margin: 0.5em auto;
+  border: none;
+  padding: 0;
+  width: 10.5ch;
+  background: white;
+  font: 3ch droid sans mono, consolas, monospace;
+  letter-spacing: 0.5ch;
+  background: repeating-linear-gradient(
+      90deg,
+      dimgrey 0,
+      dimgrey 1ch,
+      transparent 0,
+      transparent 1.5ch
+    )
+    0 100%/10ch 2px no-repeat;
+}
+
+::ng-deep .plate:focus {
+  outline: none;
+  color: dodgerblue;
+}
+
+::ng-deep .background-image {
+  padding: 3rem;
+  z-index: 1;
+  background-image: url("/assets/img/HomeBanner.png");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: 2rem !important;
+  filter: grayscale(50%);
+}
+
+::ng-deep .centered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  overflow: hidden;
+}

@@ -9,6 +9,12 @@ import { AppComponent } from './app.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { CityListGroupComponent } from './components/city/city-list-group/city-list-group.component';
+import { SearchAreaComponent } from './components/search-area/search-area.component';
+import { HomeComponent } from './components/home/home.component';
+import { PostLastFiveComponent } from './components/post/post-last-five/post-last-five.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { DxButtonModule, DxFormModule } from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -16,6 +22,11 @@ import { CityListGroupComponent } from './components/city/city-list-group/city-l
     NavbarComponent,
     FooterComponent,
     CityListGroupComponent,
+    SearchAreaComponent,
+    HomeComponent,
+    PostLastFiveComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,6 +35,9 @@ import { CityListGroupComponent } from './components/city/city-list-group/city-l
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+
+    DxButtonModule,
+    DxFormModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

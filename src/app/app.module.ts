@@ -14,7 +14,11 @@ import { HomeComponent } from './components/home/home.component';
 import { PostLastFiveComponent } from './components/post/post-last-five/post-last-five.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { RegisterComponent } from './components/auth/register/register.component';
-import { DxButtonModule, DxFormModule } from 'devextreme-angular';
+import {
+  DxButtonModule,
+  DxFormModule,
+  DxLoadIndicatorModule,
+} from 'devextreme-angular';
 
 @NgModule({
   declarations: [
@@ -38,6 +42,7 @@ import { DxButtonModule, DxFormModule } from 'devextreme-angular';
 
     DxButtonModule,
     DxFormModule,
+    DxLoadIndicatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

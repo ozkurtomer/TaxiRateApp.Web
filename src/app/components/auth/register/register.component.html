@@ -1,1 +1,47 @@
-<p>register works!</p>
+<div class="demo-container justify-content-center" style="margin-top: 200px">
+  <form action="your-action" (submit)="onFormSubmit($event)">
+    <dx-form
+      id="form"
+      [formData]="formData"
+      [showColonAfterLabel]="true"
+      [showValidationSummary]="true"
+      validationGroup="customerData"
+    >
+      <dxi-item itemType="group" caption="GIRIS YAP">
+        <dxi-item dataField="Email">
+          <dxi-validation-rule type="required" message="Email is required">
+          </dxi-validation-rule>
+          <dxi-validation-rule type="email" message="Email is invalid">
+          </dxi-validation-rule>
+          <dxi-validation-rule message="Email is already registered">
+          </dxi-validation-rule>
+        </dxi-item>
+        <dxi-item dataField="Password" [editorOptions]="{ mode: 'password' }">
+          <dxi-validation-rule type="required" message="Password is required">
+          </dxi-validation-rule>
+        </dxi-item>
+        <dxi-item editorType="dxTextBox" [editorOptions]="{ mode: 'password' }">
+          <dxo-label text="Confirm Password"> </dxo-label>
+          <dxi-validation-rule
+            type="required"
+            message="Confirm Password is required"
+          >
+          </dxi-validation-rule>
+          <dxi-validation-rule
+            type="compare"
+            [comparisonTarget]="passwordComparison"
+            message="Password and Confirm Password do not match"
+          >
+          </dxi-validation-rule>
+        </dxi-item>
+      </dxi-item>
+
+      <dxi-item
+        itemType="button"
+        horizontalAlignment="left"
+        [buttonOptions]="buttonOptions"
+      >
+      </dxi-item>
+    </dx-form>
+  </form>
+</div>

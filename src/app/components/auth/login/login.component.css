@@ -1,0 +1,43 @@
+::ng-deep .ubuntu-font {
+  font-family: "Ubuntu", sans-serif !important;
+  font-weight: 500;
+}
+
+::ng-deep .button-border {
+  border: 1px solid #212529 !important;
+  border-radius: 20px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+}
+
+::ng-deep .button-border:hover {
+  border-radius: 20px;
+  background-color: #212529 !important;
+  color: #f8f9fa !important;
+}
+
+::ng-deep .center-div {
+  position: relative;
+  top: 100%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@import "../../../../themes/generated/variables.base.scss";
+::ng-deep .login-form .link {
+  text-align: center;
+  font-size: 16px;
+  font-style: normal;
+}
+::ng-deep .login-form .link a {
+  text-decoration: none;
+}
+
+::ng-deep .login-form .form-text {
+  margin: 10px 0;
+  color: black;
+  font-family: "Ubuntu", sans-serif !important;
+  font-weight: 400;
+}

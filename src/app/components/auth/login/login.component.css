@@ -25,7 +25,6 @@
   transform: translateY(-50%);
 }
 
-@import "../../../../themes/generated/variables.base.scss";
 ::ng-deep .login-form .link {
   text-align: center;
   font-size: 16px;

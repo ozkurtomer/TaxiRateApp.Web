@@ -1,47 +1,151 @@
-<div class="demo-container justify-content-center" style="margin-top: 200px">
-  <form action="your-action" (submit)="onFormSubmit($event)">
-    <dx-form
-      id="form"
-      [formData]="formData"
-      [showColonAfterLabel]="true"
-      [showValidationSummary]="true"
-      validationGroup="customerData"
-    >
-      <dxi-item itemType="group" caption="GIRIS YAP">
-        <dxi-item dataField="Email">
-          <dxi-validation-rule type="required" message="Email is required">
-          </dxi-validation-rule>
-          <dxi-validation-rule type="email" message="Email is invalid">
-          </dxi-validation-rule>
-          <dxi-validation-rule message="Email is already registered">
-          </dxi-validation-rule>
-        </dxi-item>
-        <dxi-item dataField="Password" [editorOptions]="{ mode: 'password' }">
-          <dxi-validation-rule type="required" message="Password is required">
-          </dxi-validation-rule>
-        </dxi-item>
-        <dxi-item editorType="dxTextBox" [editorOptions]="{ mode: 'password' }">
-          <dxo-label text="Confirm Password"> </dxo-label>
-          <dxi-validation-rule
-            type="required"
-            message="Confirm Password is required"
-          >
-          </dxi-validation-rule>
-          <dxi-validation-rule
-            type="compare"
-            [comparisonTarget]="passwordComparison"
-            message="Password and Confirm Password do not match"
-          >
-          </dxi-validation-rule>
-        </dxi-item>
-      </dxi-item>
-
-      <dxi-item
-        itemType="button"
-        horizontalAlignment="left"
-        [buttonOptions]="buttonOptions"
+<section class="vh-100 ubuntu-font">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container">
+      <div
+        class="row d-flex justify-content-center align-items-center h-100 p-5"
       >
-      </dxi-item>
-    </dx-form>
-  </form>
-</div>
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card shadow" style="border-radius: 15px">
+            <div class="card-body">
+              <h2 class="text-uppercase text-center mb-2">Kayıt Ol</h2>
+
+              <form class="create-account-form" (submit)="onFormSubmit($event)">
+                <dx-form id="form" [(formData)]="formData">
+                  <dxi-item
+                    dataField="UserName"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      placeholder: 'Kullanıcı Adı',
+                      mode: 'text'
+                    }"
+                  >
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="UserUserName"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      placeholder: 'Adınız',
+                      mode: 'text'
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Adınız alanı zorunludur."
+                    ></dxi-validation-rule>
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="UserEmail"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      placeholder: 'E-Posta',
+                      mode: 'email'
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="E-Posta alanı zorunludur."
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="email"
+                      message="Geçersiz E-Posta formatı."
+                    ></dxi-validation-rule>
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="UserPassword"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      placeholder: 'Şifre',
+                      mode: 'password'
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Şifre alanı zorunludur"
+                    ></dxi-validation-rule>
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="UserRePassword"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      placeholder: 'Şifre Tekrarı',
+                      mode: 'password'
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Şifre Tekrarı alanı zorunludur."
+                    ></dxi-validation-rule>
+                    <dxi-validation-rule
+                      type="custom"
+                      message="Girdiğiniz şifreler uyuşmuyor."
+                      [validationCallback]="confirmPassword"
+                    >
+                    </dxi-validation-rule>
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <!-- <dxi-item>
+                    <div class="policy-info">
+                      By creating an account, you agree to the
+                      <a routerLink="#">Terms of Service</a> and
+                      <a routerLink="#">Privacy Policy</a>
+                    </div>
+                  </dxi-item> -->
+
+                  <dxi-item itemType="button" horizontalAlignment="center">
+                    <dxo-button-options
+                      text="Kayıt Ol"
+                      width="40%"
+                      useSubmitBehavior="true"
+                      stylingMode="outlined"
+                      class="btn btn-block btn-lg text-body button-border justify-content-center mt-4"
+                      onClick=""
+                    >
+                    </dxo-button-options>
+                  </dxi-item>
+
+                  <dxi-item>
+                    <div class="login-link">
+                      Hesabınız var mı? <a routerLink="/login">Giriş Yap</a>
+                    </div>
+                  </dxi-item>
+
+                  <!-- <ng-container
+                    *dxTemplate="let item of 'createAccountTemplate'"
+                  >
+                    <span class="dx-button-text">
+                      <ng-container *ngIf="isLoad; else notLoading">
+                        <dx-load-indicator
+                          width="24px"
+                          height="24px"
+                          [visible]="true"
+                        ></dx-load-indicator>
+                      </ng-container>
+
+                      <ng-template #notLoading
+                        >Create a new account</ng-template
+                      >
+                    </span>
+                  </ng-container> -->
+                </dx-form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -7,16 +7,16 @@ export class LoginModel {
 }
 
 export class RegisterModel {
-  userName: string;
-  userUserName: string;
-  userPassword: string;
-  userRePassword: string;
-  userEmail: string;
-  userAnonymous: boolean;
+  UserName: string;
+  UserUserName: string;
+  UserPassword: string;
+  UserRePassword: string;
+  UserEmail: string;
+  UserAnonymous: boolean;
 }
 
 export class AccessToken {
-  userId: number;
+  userName: string;
   token: string;
   expiration: Date;
 }

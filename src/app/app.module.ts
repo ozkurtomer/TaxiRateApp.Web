@@ -18,6 +18,8 @@ import {
   DxButtonModule,
   DxFormModule,
   DxLoadIndicatorModule,
+  DxNumberBoxModule,
+  DxValidatorModule,
 } from 'devextreme-angular';
 
 @NgModule({
@@ -43,6 +45,8 @@ import {
     DxButtonModule,
     DxFormModule,
     DxLoadIndicatorModule,
+    DxNumberBoxModule,
+    DxValidatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

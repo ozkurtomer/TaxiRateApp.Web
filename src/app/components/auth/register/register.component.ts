@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
+import { RegisterModel } from '../auth.model';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -12,54 +13,41 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
   isLoad = false;
   saveButtonOptions: any = [];
-  formData: any;
+  formData: RegisterModel;
   password = '';
 
   @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
 
   constructor(private authService: AuthService, private router: Router) {
-    this.saveButtonOptions = {
-      text: 'Login',
-      type: 'default',
-      stylingMode: 'outlined',
-      useSubmitBehavior: true,
-      onClick: function () {},
-    };
     this.isLoad = true;
   }
 
   ngOnInit(): void {}
 
-  passwordOptions: any = {
-    mode: 'password',
-    value: this.password,
+  confirmPassword = (e: { value: string }) => {
+    console.log(this.formData);
+    console.log(this.formData.UserPassword);
+    console.log(e.value);
+    return e.value === this.formData.UserPassword;
   };
 
-  buttonOptions: any = {
-    text: 'Register',
-    type: 'success',
-    useSubmitBehavior: true,
-  };
-
-  passwordComparison = () => this.form.instance.option('formData').Password;
-
-  checkComparison() {
-    return true;
-  }
-
-  onFormSubmit = function (e: any) {
-    notify(
-      {
-        message: 'You have submitted the form',
-        position: {
-          my: 'center top',
-          at: 'center top',
-        },
-      },
-      'success',
-      3000
-    );
-
+  onFormSubmit(e) {
     e.preventDefault();
-  };
+    this.authService.register(this.formData).subscribe((res) => {
+      notify(
+        {
+          message: 'Hesabınız başarılı bir şekilde oluşturuldu.',
+          position: {
+            my: 'center top',
+            at: 'center top',
+          },
+        },
+        'success',
+        3000
+      );
+      localStorage.setItem('token', res.data.token);
+
+      this.router.navigate(['/home']);
+    });
+  }
 }

@@ -6,7 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  constructor() {}
+  isCollapsed = false;
+  constructor() {
+    this.ngOnInit();
+  }
   userName: string = '';
   isLoggedIn: boolean = true;
 
@@ -16,5 +19,10 @@ export class NavbarComponent implements OnInit {
       this.isLoggedIn = false;
       this.userName = userName;
     }
+  }
+
+  logOut(): void {
+    localStorage.clear();
+    window.location.reload();
   }
 }

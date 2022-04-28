@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <section class="vh-100 ubuntu-font">
   <div class="mask d-flex align-items-center h-100 gradient-custom-3">
     <div class="container">
@@ -17,7 +18,8 @@
                     [editorOptions]="{
                       stylingMode: 'filled',
                       placeholder: 'Kullanıcı Adı',
-                      mode: 'text'
+                      mode: 'text',
+                      elementAttr: { class: 'mt-4' }
                     }"
                   >
                     <dxo-label [visible]="false"></dxo-label>
@@ -29,7 +31,8 @@
                     [editorOptions]="{
                       stylingMode: 'filled',
                       placeholder: 'Adınız',
-                      mode: 'text'
+                      mode: 'text',
+                      elementAttr: { class: 'mt-4' }
                     }"
                   >
                     <dxi-validation-rule
@@ -45,7 +48,8 @@
                     [editorOptions]="{
                       stylingMode: 'filled',
                       placeholder: 'E-Posta',
-                      mode: 'email'
+                      mode: 'email',
+                      elementAttr: { class: 'mt-4' }
                     }"
                   >
                     <dxi-validation-rule
@@ -65,7 +69,8 @@
                     [editorOptions]="{
                       stylingMode: 'filled',
                       placeholder: 'Şifre',
-                      mode: 'password'
+                      mode: 'password',
+                      elementAttr: { class: 'mt-4' }
                     }"
                   >
                     <dxi-validation-rule
@@ -81,7 +86,8 @@
                     [editorOptions]="{
                       stylingMode: 'filled',
                       placeholder: 'Şifre Tekrarı',
-                      mode: 'password'
+                      mode: 'password',
+                      elementAttr: { class: 'mt-4' }
                     }"
                   >
                     <dxi-validation-rule
@@ -105,7 +111,11 @@
                     </div>
                   </dxi-item> -->
 
-                  <dxi-item itemType="button" horizontalAlignment="center">
+                  <dxi-item
+                    itemType="button"
+                    horizontalAlignment="center"
+                    [buttonOptions]="saveButtonOptions"
+                  >
                     <dxo-button-options
                       text="Kayıt Ol"
                       width="40%"

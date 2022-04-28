@@ -20,6 +20,16 @@ export class RegisterComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     this.isLoad = true;
+    this.saveButtonOptions = {
+      text: 'Kayıt Ol',
+      type: 'default',
+      stylingMode: 'outlined',
+      useSubmitBehavior: true,
+      class:
+        'btn btn-block btn-lg text-body button-border justify-content-center mt-4',
+      onClick: function () {},
+    };
+    this.isLoad = true;
   }
 
   ngOnInit(): void {}
@@ -34,20 +44,35 @@ export class RegisterComponent implements OnInit {
   onFormSubmit(e) {
     e.preventDefault();
     this.authService.register(this.formData).subscribe((res) => {
-      notify(
-        {
-          message: 'Hesabınız başarılı bir şekilde oluşturuldu.',
-          position: {
-            my: 'center top',
-            at: 'center top',
+      if (res.success) {
+        notify(
+          {
+            message: 'Hesabınız başarılı bir şekilde oluşturuldu.',
+            position: {
+              my: 'right top',
+              at: 'right top',
+            },
           },
-        },
-        'success',
-        3000
-      );
-      localStorage.setItem('token', res.data.token);
-
-      this.router.navigate(['/home']);
+          'success',
+          1000
+        );
+        localStorage.setItem('token', res.data.token);
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 2000);
+      } else {
+        notify(
+          {
+            message: res.message,
+            position: {
+              my: 'right top',
+              at: 'right top',
+            },
+          },
+          'success',
+          2000
+        );
+      }
     });
   }
 }

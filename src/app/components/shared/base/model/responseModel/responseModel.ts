@@ -1,5 +1,5 @@
 export interface ResponseModel {
-  Success: boolean;
-  Message: string;
-  ItemPerPage: number;
+  success: boolean;
+  message: string;
+  itemPerPage: number;
 }

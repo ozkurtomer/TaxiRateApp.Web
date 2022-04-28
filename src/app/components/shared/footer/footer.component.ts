@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-footer',
@@ -10,4 +10,31 @@ export class FooterComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+  @Output()
+  menuToggle = new EventEmitter<boolean>();
+
+  @Input()
+  menuToggleEnabled = false;
+
+  @Input()
+  title: string;
+
+  user = { email: '' };
+
+  userMenuItems = [
+    {
+      text: 'Profile',
+      icon: 'user',
+      onClick: () => {},
+    },
+    {
+      text: 'Logout',
+      icon: 'runner',
+      onClick: () => {},
+    },
+  ];
+
+  toggleMenu = () => {
+    this.menuToggle.emit();
+  };
 }

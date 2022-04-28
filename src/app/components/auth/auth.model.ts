@@ -12,6 +12,7 @@ export class RegisterModel {
   UserPassword: string;
   UserRePassword: string;
   UserEmail: string;
+  UserIpAddress: string;
   UserAnonymous: boolean;
 }
 

@@ -10,14 +10,10 @@ import { AccessToken, LoginModel, RegisterModel } from './auth.model';
 })
 export class AuthService {
   constructor(private httpClient: HttpClient) {}
-
+  ipAddress: string;
   public login(
     loginModel: LoginModel
   ): Observable<BaseResponseModel<AccessToken>> {
-    var res = this.httpClient.post<BaseResponseModel<AccessToken>>(
-      environment.apiUrl + '/auth/login',
-      loginModel
-    );
     return this.httpClient.post<BaseResponseModel<AccessToken>>(
       environment.apiUrl + '/auth/login',
       loginModel
@@ -31,5 +27,13 @@ export class AuthService {
       environment.apiUrl + '/auth/register',
       registerModel
     );
+  }
+
+  getIPAddress(): any {
+    this.httpClient
+      .get('http://api.ipify.org/?format=json')
+      .subscribe((res: any) => {
+        return res.ip;
+      });
   }
 }

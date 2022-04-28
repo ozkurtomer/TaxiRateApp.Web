@@ -37,6 +37,10 @@
         </li>
       </ul>
 
+      <h4 *ngIf="!isLoggedIn" class="text-center ml-auto">
+        Hoşgeldin <strong class="font-weight-bold">{{ userName }}</strong>
+      </h4>
+
       <ul class="navbar-nav ml-auto">
         <li class="nav-item border-navbar ml-1 my-1">
           <a
@@ -63,8 +67,16 @@
             >Kayıt Ol</a
           >
         </li>
+
+        <li class="nav-item border-navbar ml-1 my-1" *ngIf="!isLoggedIn">
+          <a
+            class="nav-link text-dark text-center ubuntu-font"
+            routerLink="/home"
+            (click)="logOut()"
+            >Çıkış Yap</a
+          >
+        </li>
       </ul>
-      <h5 *ngIf="!isLoggedIn">Hoşgeldin {{ userName }}</h5>
     </div>
   </div>
 </nav>

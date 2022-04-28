@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
     this.saveButtonOptions = {
-      text: 'Kaydet',
+      text: 'Giriş Yap',
       type: 'default',
       stylingMode: 'outlined',
       useSubmitBehavior: true,
@@ -41,23 +41,39 @@ export class LoginComponent implements OnInit {
 
   onFormSubmit(e) {
     this.authService.login(this.formData).subscribe((res) => {
-      notify(
-        {
-          message: 'Giriş Yapılıyor...',
-          position: {
-            my: 'center top',
-            at: 'center top',
+      if (res.success) {
+        notify(
+          {
+            message: 'Başarılı. Ana sayfaya yönlendiriliyorsunuz.',
+            position: {
+              my: 'right top',
+              at: 'right top',
+            },
+            width: 350,
           },
-        },
-        'success',
-        3000
-      );
+          'success',
+          1000
+        );
 
-      localStorage.setItem('token', res.data.token);
-      localStorage.setItem('userName', res.data.userName);
-      console.log(res.data.token);
-      console.log(res.data.userName);
-      this.router.navigate(['/home']);
+        localStorage.setItem('token', res.data.token);
+        localStorage.setItem('userName', res.data.userName);
+        setTimeout(() => {
+          this.router.navigate(['/home']);
+        }, 1000);
+      } else {
+        notify(
+          {
+            message: res.message,
+            position: {
+              my: 'right top',
+              at: 'right top',
+            },
+            width: 350,
+          },
+          'warning',
+          3000
+        );
+      }
     });
 
     e.preventDefault();

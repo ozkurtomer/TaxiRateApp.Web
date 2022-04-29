@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.taksipuanla.com/api',
+  apiUrl: 'https://localhost:44327/api',
 };
 
 /*

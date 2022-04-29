@@ -1,23 +1,21 @@
 ::ng-deep .search-area {
-  padding: 1px;
   border-radius: 10px;
   overflow: hidden;
   width: 380px;
 }
 
 ::ng-deep .CardInner {
-  padding: 4px 4px;
   background-color: #e2e9f4;
 }
 
 ::ng-deep .Icon {
-  min-width: 46px;
-  min-height: 46px;
+  min-width: 50px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 10px;
-  margin-right: 12px;
+  margin-right: 5px;
   box-shadow: -2px -2px 6px rgba(255, 255, 255, 0.6), 2px 2px 12px #c8d8e7;
   cursor: pointer;
 }

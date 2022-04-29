@@ -19,9 +19,11 @@ export class PostLastFiveComponent implements OnInit {
 
   getLastFivePosts() {
     this.postService.getLastFivePosts().subscribe((response) => {
-      this.posts = response.data;
-      this.dataCount = response.data.length;
-      this.dataLoaded = true;
+      if (response.success) {
+        this.posts = response.data;
+        this.dataCount = response.data.length;
+        this.dataLoaded = true;
+      }
     });
   }
 }

@@ -22,7 +22,9 @@ import {
   DxNumberBoxModule,
   DxValidatorModule,
   DxToolbarModule,
+  DxDataGridModule,
 } from 'devextreme-angular';
+import { PostAllComponent } from './components/post/post-all/post-all.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,7 @@ import {
     PostLastFiveComponent,
     LoginComponent,
     RegisterComponent,
+    PostAllComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +53,7 @@ import {
     DxNumberBoxModule,
     DxValidatorModule,
     DxToolbarModule,
+    DxDataGridModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

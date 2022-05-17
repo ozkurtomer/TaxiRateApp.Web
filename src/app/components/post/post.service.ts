@@ -22,4 +22,11 @@ export class PostService {
       environment.apiUrl + '/Posts/getallposts'
     );
   }
+
+  getPostsWithPlateNo(plateNo: string): Observable<ListResponseModel<Post[]>> {
+    return this.httpClient.post<ListResponseModel<Post[]>>(
+      environment.apiUrl + '/Posts/getpostswithplateno',
+      { plateNo: plateNo }
+    );
+  }
 }

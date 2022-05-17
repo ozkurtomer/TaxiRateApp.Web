@@ -25,6 +25,8 @@ import {
   DxDataGridModule,
 } from 'devextreme-angular';
 import { PostAllComponent } from './components/post/post-all/post-all.component';
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,10 @@ import { PostAllComponent } from './components/post/post-all/post-all.component'
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
+
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
 
     DxButtonModule,
     DxFormModule,

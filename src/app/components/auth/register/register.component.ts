@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { DxFormComponent } from 'devextreme-angular';
 import notify from 'devextreme/ui/notify';
+import { ToastrService } from 'ngx-toastr';
 import { RegisterModel } from '../auth.model';
 import { AuthService } from '../auth.service';
 
@@ -18,7 +19,11 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tostrService: ToastrService
+  ) {
     this.isLoad = true;
     this.saveButtonOptions = {
       text: 'Kayıt Ol',
@@ -45,33 +50,20 @@ export class RegisterComponent implements OnInit {
     e.preventDefault();
     this.authService.register(this.formData).subscribe((res) => {
       if (res.success) {
-        notify(
-          {
-            message: 'Hesabınız başarılı bir şekilde oluşturuldu.',
-            position: {
-              my: 'right top',
-              at: 'right top',
-            },
-          },
-          'success',
-          1000
-        );
+        this.tostrService.error(res.message, 'Başarılı', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
+
         localStorage.setItem('token', res.data.token);
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-        }, 2000);
+        this.router.navigate(['/home']);
       } else {
-        notify(
-          {
-            message: res.message,
-            position: {
-              my: 'right top',
-              at: 'right top',
-            },
-          },
-          'success',
-          2000
-        );
+        this.tostrService.error(res.message, 'Başarısız', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
       }
     });
   }

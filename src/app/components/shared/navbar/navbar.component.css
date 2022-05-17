@@ -3,6 +3,11 @@
   font-weight: 500;
 }
 
+::ng-deep .active {
+  font-family: "Ubuntu", sans-serif !important;
+  font-weight: 1500;
+}
+
 ::ng-deep .ml-auto {
   margin-left: auto !important;
 }

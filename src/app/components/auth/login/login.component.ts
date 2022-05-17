@@ -5,6 +5,7 @@ import notify from 'devextreme/ui/notify';
 import { DxFormComponent } from 'devextreme-angular';
 import { LoginModel } from '../auth.model';
 import { elementAt } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,11 @@ export class LoginComponent implements OnInit {
   saveButtonOptions: any = [];
   formData: LoginModel;
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(
+    private authService: AuthService,
+    private router: Router,
+    private tostrService: ToastrService
+  ) {
     this.saveButtonOptions = {
       text: 'Giriş Yap',
       type: 'default',
@@ -42,37 +47,21 @@ export class LoginComponent implements OnInit {
   onFormSubmit(e) {
     this.authService.login(this.formData).subscribe((res) => {
       if (res.success) {
-        notify(
-          {
-            message: 'Başarılı. Ana sayfaya yönlendiriliyorsunuz.',
-            position: {
-              my: 'right top',
-              at: 'right top',
-            },
-            width: 350,
-          },
-          'success',
-          1000
-        );
+        this.tostrService.success(res.message, 'Başarılı', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
 
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userName', res.data.userName);
-        setTimeout(() => {
-          this.router.navigate(['/home']);
-        }, 1000);
+        this.router.navigate(['/home']);
       } else {
-        notify(
-          {
-            message: res.message,
-            position: {
-              my: 'right top',
-              at: 'right top',
-            },
-            width: 350,
-          },
-          'warning',
-          3000
-        );
+        this.tostrService.error(res.message, 'Başarısız', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
       }
     });
 

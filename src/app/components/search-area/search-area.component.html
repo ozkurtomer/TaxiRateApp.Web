@@ -11,13 +11,11 @@
 
     <hr class="my-4 mt-5 mb-5" />
 
-    <!-- <p class="lead text-white ubuntu-font"> -->
-
     <div class="centered p-2 mt-5 mb-5">
       <div class="search-area">
         <div class="CardInner">
           <div class="d-flex">
-            <div class="Icon">
+            <div class="Icon" (click)="searchPost()">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
@@ -39,9 +37,10 @@
               <input
                 class="plate"
                 maxlength="8"
-                value=""
+                [value]="searchText"
+                (keyup)="setSearchText($event)"
                 placeholder="34XXX123"
-                pattern="/^(0[1-9]|[1-8][0-9]|8[01])(([A-PR-VYZ])(\d{4,5})|([A-PR-VYZ]{2})(\d{3,4})|([A-PR-VYZ]{3})(\d{2,3}))$/"
+                pattern="/^(0[1–9]|[1–7][0–9]|8[01])(([A-Z])(\d{4,5})|([A-Z]{2})(\d{3,4})|([A-Z]{3})(\d{2,3}))$/"
               />
             </div>
           </div>

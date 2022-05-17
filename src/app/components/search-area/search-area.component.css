@@ -67,10 +67,10 @@
   margin: 0.5em auto;
   border: none;
   padding: 0;
-  width: 10.5ch;
+  width: 12.5ch;
   background: white;
   font: 3ch droid sans mono, consolas, monospace;
-  letter-spacing: 0.5ch;
+  letter-spacing: 0.47ch;
   background: repeating-linear-gradient(
       90deg,
       dimgrey 0,
@@ -78,7 +78,7 @@
       transparent 0,
       transparent 1.5ch
     )
-    0 100%/10ch 2px no-repeat;
+    0 100%/12ch 2px no-repeat;
 }
 
 ::ng-deep .plate:focus {

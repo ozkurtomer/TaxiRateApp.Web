@@ -1,5 +1,5 @@
 import { ResponseModel } from './responseModel';
 
-export interface BaseResponseModel<T> extends ResponseModel {
+export class BaseResponseModel<T> extends ResponseModel {
   data: T;
 }

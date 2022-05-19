@@ -28,6 +28,7 @@ import { PostAllComponent } from './components/post/post-all/post-all.component'
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
+import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { PostDetailComponent } from './components/post/post-detail/post-detail.c
     RegisterComponent,
     PostAllComponent,
     PostDetailComponent,
+    CommentListComponent,
   ],
   imports: [
     BrowserModule,

@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'posts-all', component: PostAllComponent },
   { path: 'posts', component: PostAllComponent },
+  { path: 'posts/:plateNo', component: PostAllComponent },
   { path: 'posts-detail/:id', component: PostDetailComponent },
 ];
 

@@ -1,4 +1,5 @@
 <app-navbar></app-navbar>
+
 <div
   *ngIf="dataLoaded"
   class="container border"
@@ -9,10 +10,14 @@
     #dataGrid
     [dataSource]="postDataSource"
     keyExpr="post_Id"
+    height="600px"
+    noDataText="Veri Bulunamadı"
   >
     <dxo-search-panel
       [visible]="true"
       [placeholder]="'Ara...'"
+      [(text)]="searchText"
+      (textChange)="onSearchTextChange()"
     ></dxo-search-panel>
 
     <dxo-scrolling mode="virtual"></dxo-scrolling>

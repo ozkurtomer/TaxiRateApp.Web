@@ -11,11 +11,7 @@ import { PostService } from '../post/post.service';
 export class SearchAreaComponent implements OnInit {
   searchText: string = '';
 
-  constructor(
-    private postService: PostService,
-    private toastService: ToastrService,
-    private router: Router
-  ) {}
+  constructor(private toastService: ToastrService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -31,7 +27,7 @@ export class SearchAreaComponent implements OnInit {
         }
       );
     } else {
-      this.router.navigate(['/posts'], {});
+      this.router.navigate(['/posts', this.searchText]);
     }
   }
 

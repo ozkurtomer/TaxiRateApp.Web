@@ -2,7 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ListResponseModel } from '../shared/base/model/responseModel/listResponseModel';
+import {
+  GetResponseModel,
+  ListResponseModel,
+} from '../shared/base/model/responseModel/listResponseModel';
+import { ResponseModel } from '../shared/base/model/responseModel/responseModel';
 import { Post } from './post.model';
 
 @Injectable({
@@ -27,6 +31,13 @@ export class PostService {
     return this.httpClient.post<ListResponseModel<Post[]>>(
       environment.apiUrl + '/Posts/getpostswithplateno',
       { plateNo: plateNo }
+    );
+  }
+
+  getDetailWithId(postIds: string): Observable<GetResponseModel<Post>> {
+    console.log(postIds);
+    return this.httpClient.get<GetResponseModel<Post>>(
+      environment.apiUrl + '/Posts/getdetailwithid?postId=' + postIds
     );
   }
 }

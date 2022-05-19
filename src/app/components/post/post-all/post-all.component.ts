@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DxDataGridComponent } from 'devextreme-angular';
 import { ToastrService } from 'ngx-toastr';
 import { Post } from '../post.model';
@@ -11,6 +11,7 @@ import { PostService } from '../post.service';
   styleUrls: ['./post-all.component.css'],
 })
 export class PostAllComponent implements OnInit {
+  searchText: string;
   postDataSource: Post[] = [];
   dataLoaded: boolean = false;
   selectedRows: number[] = [];
@@ -19,9 +20,13 @@ export class PostAllComponent implements OnInit {
   constructor(
     private postService: PostService,
     private tostrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.detailClick = this.detailClick.bind(this);
+    this.route.paramMap.subscribe((item) => {
+      this.searchText = item.get('plateNo')!;
+    });
   }
 
   ngOnInit(): void {
@@ -35,7 +40,7 @@ export class PostAllComponent implements OnInit {
         widget: 'dxButton',
         options: {
           icon: 'refresh',
-          onClick: this.fillDataSource,
+          onClick: this.fillDataSource(),
         },
       },
       {
@@ -43,7 +48,7 @@ export class PostAllComponent implements OnInit {
         widget: 'dxButton',
         options: {
           icon: 'add',
-          onClick: this.fillDataSource,
+          onClick: this.fillDataSource(),
         },
       }
     );
@@ -64,11 +69,13 @@ export class PostAllComponent implements OnInit {
     });
   }
 
-  detailClick(e) {
-    try {
-      this.router.navigate(['/posts-detail', e.row.data.post_Id]);
-    } catch (error) {
-      console.log(error);
+  onSearchTextChange() {
+    if (this.searchText.length === 0) {
+      this.router.navigate(['/posts']);
     }
+  }
+
+  detailClick(e) {
+    this.router.navigate(['/posts-detail', e.row.data.post_Id]);
   }
 }

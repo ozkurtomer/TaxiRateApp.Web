@@ -1,99 +1,97 @@
 <nav
-  class="navbar navbar-expand-md navbar-light bg-light justify-content-center fixed-top"
+  class="navbar container navbar-expand-md navbar-light bg-light justify-content-center fixed-top"
 >
-  <div class="container">
-    <a class="navbar-brand cursor-pointer" routerLink="">
-      <img
-        src="./assets/img/logo.svg"
-        width="30"
-        height="30"
-        class="d-inline-block align-text-top text-lg-left"
-      />
-      <span class="ubuntu-font">Taksi Puanla</span>
-    </a>
+  <a class="navbar-brand cursor-pointer" routerLink="/">
+    <img
+      src="./assets/img/logo.svg"
+      width="30"
+      height="30"
+      class="d-inline-block align-text-top text-lg-left"
+    />
+    <span class="ubuntu-font">Taksi Puanla</span>
+  </a>
 
-    <button
-      #collapseButton
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarTogglerDemo02"
-      aria-controls="navbarTogglerDemo02"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      (click)="togglePanel(collapseButton, collapsePanel)"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div
-      #collapsePanel
-      class="collapse navbar-collapse"
-      id="navbarSupportedContent"
-    >
-      <ul class="navbar-nav">
-        <li class="nav-item border-navbar ml-1 my-1" style="min-width: 133px">
-          <a
-            class="nav-link text-dark text-center ubuntu-font"
-            routerLink="/"
-            routerLinkActive="active"
-            >Ana Sayfa</a
-          >
-        </li>
+  <button
+    #collapseButton
+    class="navbar-toggler"
+    type="button"
+    data-bs-toggle="collapse"
+    data-bs-target="#navbarTogglerDemo02"
+    aria-controls="navbarTogglerDemo02"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+    (click)="togglePanel(collapseButton, collapsePanel)"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    #collapsePanel
+    class="collapse navbar-collapse"
+    id="navbarSupportedContent"
+  >
+    <ul class="navbar-nav">
+      <li class="nav-item border-navbar ml-1 my-1" style="min-width: 133px">
+        <a
+          class="nav-link text-dark text-center ubuntu-font"
+          routerLink="/"
+          routerLinkActive="active"
+          >Ana Sayfa</a
+        >
+      </li>
 
-        <li class="nav-item border-navbar ml-1 my-1" style="min-width: 133px">
-          <a
-            class="nav-link text-dark text-center ubuntu-font"
-            routerLink="/posts-all"
-            routerLinkActive="active"
-            >Tüm Gönderiler</a
-          >
-        </li>
-      </ul>
+      <li class="nav-item border-navbar ml-1 my-1" style="min-width: 133px">
+        <a
+          class="nav-link text-dark text-center ubuntu-font"
+          routerLink="/posts-all"
+          routerLinkActive="active"
+          >Tüm Gönderiler</a
+        >
+      </li>
+    </ul>
 
-      <h4 *ngIf="!isLoggedIn" class="text-center ml-auto">
-        Hoşgeldin <strong class="font-weight-bold">{{ userName }}</strong>
-      </h4>
+    <h4 *ngIf="!isLoggedIn" class="text-center ml-auto">
+      Hoşgeldin <strong class="font-weight-bold">{{ userName }}</strong>
+    </h4>
 
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item border-navbar ml-1 my-1">
-          <a
-            class="nav-link text-dark text-center ubuntu-font gradient-border"
-            style="border: none"
-            asp-controller="Posts"
-            asp-action="AddPost"
-            routerLink="/"
-            routerLinkActive="active"
-            >Gönderi Paylaş</a
-          >
-        </li>
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item border-navbar ml-1 my-1">
+        <a
+          class="nav-link text-dark text-center ubuntu-font gradient-border"
+          style="border: none"
+          asp-controller="Posts"
+          asp-action="AddPost"
+          routerLink="/"
+          routerLinkActive="active"
+          >Gönderi Paylaş</a
+        >
+      </li>
 
-        <li class="nav-item border-navbar ml-1 my-1" *ngIf="isLoggedIn">
-          <a
-            class="nav-link text-dark text-center ubuntu-font"
-            routerLink="/login"
-            routerLinkActive="active"
-            >Giriş Yap</a
-          >
-        </li>
+      <li class="nav-item border-navbar ml-1 my-1" *ngIf="isLoggedIn">
+        <a
+          class="nav-link text-dark text-center ubuntu-font"
+          routerLink="/login"
+          routerLinkActive="active"
+          >Giriş Yap</a
+        >
+      </li>
 
-        <li class="nav-item border-navbar ml-1 my-1" *ngIf="isLoggedIn">
-          <a
-            class="nav-link text-dark text-center ubuntu-font"
-            [routerLink]="['/register']"
-            routerLinkActive="active"
-            >Kayıt Ol</a
-          >
-        </li>
+      <li class="nav-item border-navbar ml-1 my-1" *ngIf="isLoggedIn">
+        <a
+          class="nav-link text-dark text-center ubuntu-font"
+          [routerLink]="['/register']"
+          routerLinkActive="active"
+          >Kayıt Ol</a
+        >
+      </li>
 
-        <li class="nav-item border-navbar ml-1 my-1" *ngIf="!isLoggedIn">
-          <a
-            class="nav-link text-dark text-center ubuntu-font"
-            routerLink="/home"
-            (click)="logOut()"
-            >Çıkış Yap</a
-          >
-        </li>
-      </ul>
-    </div>
+      <li class="nav-item border-navbar ml-1 my-1" *ngIf="!isLoggedIn">
+        <a
+          class="nav-link text-dark text-center ubuntu-font"
+          routerLink="/home"
+          (click)="logOut()"
+          >Çıkış Yap</a
+        >
+      </li>
+    </ul>
   </div>
 </nav>

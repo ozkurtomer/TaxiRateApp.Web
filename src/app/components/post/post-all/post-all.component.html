@@ -1,46 +1,61 @@
 <app-navbar></app-navbar>
-<div class="container border" style="margin-top: 10rem; border-radius: 1rem">
-  <dx-data-grid [dataSource]="dataSource" [height]="600">
+<div
+  *ngIf="dataLoaded"
+  class="container border"
+  style="margin-top: 10rem; border-radius: 1rem"
+>
+  <dx-data-grid
+    id="gridContainer"
+    #dataGrid
+    [dataSource]="postDataSource"
+    keyExpr="post_Id"
+  >
+    <dxo-search-panel
+      [visible]="true"
+      [placeholder]="'Ara...'"
+    ></dxo-search-panel>
+
     <dxo-scrolling mode="virtual"></dxo-scrolling>
 
-    <dxi-column dataField="Post_Id" [visible]="false"> </dxi-column>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
 
-    <dxi-column dataField="User_Id" [visible]="false"> </dxi-column>
+    <dxo-paging [pageSize]="100"></dxo-paging>
 
-    <dxi-column dataField="City_Id" [visible]="false"> </dxi-column>
-
-    <dxi-column dataField="City.City_Name" caption="Şehir" dataType="string">
-    </dxi-column>
-
-    <dxi-column dataField="Post_Plate" dataType="string"> </dxi-column>
-
-    <dxi-column dataField="Post_Title" dataType="string"> </dxi-column>
-
-    <dxi-column dataField="Post_Description"> </dxi-column>
-
-    <dxi-column
-      dataField="ShipVia"
-      caption="Shipping Company"
-      dataType="number"
+    <dxo-pager
+      [visible]="true"
+      [allowedPageSizes]="[100, 150, 200, 250, 300]"
+      [displayMode]="'full'"
+      [showPageSizeSelector]="true"
+      [showInfo]="true"
+      [showNavigationButtons]="true"
     >
-      <dxo-lookup
-        [dataSource]="shippersData"
-        valueExpr="Value"
-        displayExpr="Text"
-      ></dxo-lookup>
+    </dxo-pager>
+
+    <dxi-column dataField="post_Id" [visible]="false"> </dxi-column>
+
+    <dxi-column dataField="user_Id" [visible]="false"> </dxi-column>
+
+    <dxi-column dataField="city_Id" [visible]="false"> </dxi-column>
+
+    <dxi-column dataField="city.city_Name" caption="Şehir" dataType="string">
     </dxi-column>
 
-    <div *dxTemplate="let order of 'detail'">
-      <!-- <detail-grid [key]="order.key"></detail-grid> -->
-    </div>
-    <dxo-summary>
-      <dxi-total-item column="Freight" summaryType="sum">
-        <dxo-value-format type="decimal" [precision]="2"></dxo-value-format>
-      </dxi-total-item>
-      <dxi-group-item column="Freight" summaryType="sum">
-        <dxo-value-format type="decimal" [precision]="2"></dxo-value-format>
-      </dxi-group-item>
-      <dxi-group-item summaryType="count"> </dxi-group-item>
-    </dxo-summary>
+    <dxi-column dataField="post_Plate" dataType="string" caption="Plaka">
+    </dxi-column>
+
+    <dxi-column dataField="post_Title" dataType="string" caption="Başlık">
+    </dxi-column>
+
+    <dxi-column dataField="post_Description" caption="Açıklama"> </dxi-column>
+
+    <dxi-column type="buttons" caption="İncele" alignment="left" width="60">
+      <dxi-button
+        text="İncele"
+        hint="İncele"
+        icon="search"
+        [onClick]="detailClick"
+      >
+      </dxi-button>
+    </dxi-column>
   </dx-data-grid>
 </div>

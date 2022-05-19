@@ -27,6 +27,7 @@ import {
 import { PostAllComponent } from './components/post/post-all/post-all.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
+import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ToastrModule } from 'ngx-toastr';
     LoginComponent,
     RegisterComponent,
     PostAllComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,

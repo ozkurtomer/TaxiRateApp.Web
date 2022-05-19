@@ -19,7 +19,7 @@ export class PostService {
 
   getAllPosts(): Observable<ListResponseModel<Post>> {
     return this.httpClient.get<ListResponseModel<Post>>(
-      environment.apiUrl + '/Posts/getallposts'
+      environment.apiUrl + '/Posts/getpostshomescreen'
     );
   }
 

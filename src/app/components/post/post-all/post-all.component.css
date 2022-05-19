@@ -1,0 +1,12 @@
+::ng-deep #gridContainer .dx-toolbar .dx-texteditor {
+  width: 100% !important;
+}
+
+::ng-deep #gridContainer .dx-toolbar .dx-toolbar-after {
+  padding-left: 0px;
+  width: 100% !important;
+}
+
+::ng-deep #gridContainer .dx-datagrid-search-panel {
+  margin: 0.3rem;
+}

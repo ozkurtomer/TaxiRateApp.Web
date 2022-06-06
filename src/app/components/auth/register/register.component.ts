@@ -49,8 +49,9 @@ export class RegisterComponent implements OnInit {
   onFormSubmit(e) {
     e.preventDefault();
     this.authService.register(this.formData).subscribe((res) => {
+      console.log(res);
       if (res.success) {
-        this.tostrService.error(res.message, 'Başarılı', {
+        this.tostrService.success(res.message, 'Başarılı', {
           progressAnimation: 'decreasing',
           progressBar: true,
           timeOut: 3000,

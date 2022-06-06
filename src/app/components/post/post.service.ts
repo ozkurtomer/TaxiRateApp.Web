@@ -7,7 +7,7 @@ import {
   ListResponseModel,
 } from '../shared/base/model/responseModel/listResponseModel';
 import { ResponseModel } from '../shared/base/model/responseModel/responseModel';
-import { Post } from './post.model';
+import { Comments, Post } from './post.model';
 
 @Injectable({
   providedIn: 'root',
@@ -38,6 +38,13 @@ export class PostService {
     console.log(postIds);
     return this.httpClient.get<GetResponseModel<Post>>(
       environment.apiUrl + '/Posts/getdetailwithid?postId=' + postIds
+    );
+  }
+
+  saveComment(comment: Comments): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      environment.apiUrl + '/comment/add',
+      comment
     );
   }
 }

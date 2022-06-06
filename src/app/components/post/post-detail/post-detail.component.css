@@ -1,34 +1,3 @@
-::ng-deep .comment-top input[type="text"],
-::ng-deep .comment-top input[type="email"],
-::ng-deep .comment-top textarea {
-  background: none;
-  width: 100%;
-  outline: none;
-  border: 1px solid #e2e2e2;
-  padding: 0.7em 1em;
-  font-size: 0.9em;
-  color: #e2e2e2;
-  margin: 0 0 0.7em;
-  letter-spacing: 2px;
-}
-
-::ng-deep ::ng-deep .comment-top button.btn.btn-primary.submit[type="submit"] {
-  font-size: 1.1em;
-  background: #080808;
-  padding: 0.7em 2em;
-  text-align: center;
-  color: #fff;
-  border: none;
-  outline: none;
-  margin: 0 auto;
-  transition: 0.5s all;
-  -webkit-transition: 0.5s all;
-  -o-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  cursor: pointer;
-}
-
 ::ng-deep .comment-top button.btn.btn-primary.submit[type="submit"]:hover {
   background: #01cd74;
 }
@@ -269,4 +238,8 @@ ul {
 .blured-img {
   filter: blur(4px);
   -webkit-filter: blur(4px);
+}
+
+.login-form input {
+  background-color: black;
 }

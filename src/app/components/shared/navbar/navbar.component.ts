@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
     var userName = localStorage.getItem('userName');
     if (userName != null) {
       this.isLoggedIn = false;
-      this.userName = userName;
+      //this.userName = userName;
     }
   }
 

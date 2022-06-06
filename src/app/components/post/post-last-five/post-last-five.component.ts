@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from '../post.model';
 import { PostService } from '../post.service';
 
@@ -11,7 +12,7 @@ export class PostLastFiveComponent implements OnInit {
   posts: Post[] = [];
   dataCount: number = 0;
   dataLoaded: boolean = false;
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService, private router: Router) {}
 
   ngOnInit(): void {
     this.getLastFivePosts();
@@ -25,5 +26,9 @@ export class PostLastFiveComponent implements OnInit {
         this.dataLoaded = true;
       }
     });
+  }
+
+  showDetailPost(post: Post) {
+    this.router.navigate(['/posts-detail', post.post_Id]);
   }
 }

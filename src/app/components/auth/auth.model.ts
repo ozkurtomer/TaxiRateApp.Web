@@ -21,3 +21,16 @@ export class AccessToken {
   token: string;
   expiration: Date;
 }
+
+export class User {
+  user_Id: number;
+  user_Name: string;
+  user_UserName: string;
+  user_Email: string;
+  user_PasswordHash: string;
+  user_PasswordSalt: string;
+  user_Ip: string;
+  user_Anonymous: boolean;
+  user_CreatedDate: boolean;
+  user_IsActive: boolean;
+}

@@ -23,6 +23,7 @@ import {
   DxValidatorModule,
   DxToolbarModule,
   DxDataGridModule,
+  DxTextAreaModule,
 } from 'devextreme-angular';
 import { PostAllComponent } from './components/post/post-all/post-all.component';
 import { CommonModule } from '@angular/common';
@@ -64,6 +65,7 @@ import { CommentListComponent } from './components/comment/comment-list/comment-
     DxValidatorModule,
     DxToolbarModule,
     DxDataGridModule,
+    DxTextAreaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

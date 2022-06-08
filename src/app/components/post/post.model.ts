@@ -21,10 +21,10 @@ export class Post {
 export class Comments {
   comment_Id: number;
   post_Id: number;
-  user_Id: number;
+  user_Id?: number;
   comment_Description: string;
   comment_IsActive: boolean;
   comment_CreatedDate: Date;
 
-  user: User;
+  user?: User;
 }

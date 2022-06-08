@@ -40,16 +40,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   confirmPassword = (e: { value: string }) => {
-    console.log(this.formData);
-    console.log(this.formData.UserPassword);
-    console.log(e.value);
     return e.value === this.formData.UserPassword;
   };
 
   onFormSubmit(e) {
     e.preventDefault();
     this.authService.register(this.formData).subscribe((res) => {
-      console.log(res);
       if (res.success) {
         this.tostrService.success(res.message, 'Başarılı', {
           progressAnimation: 'decreasing',

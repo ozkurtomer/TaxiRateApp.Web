@@ -42,7 +42,6 @@ export class PostDetailComponent implements OnInit {
     this.postService.getDetailWithId(postId).subscribe((res) => {
       this.post = res.data;
       this.dataLoaded = true;
-      console.log(res.data);
     });
   }
 
@@ -59,8 +58,8 @@ export class PostDetailComponent implements OnInit {
           timeOut: 3000,
         });
         setTimeout(() => {
-          window.location.reload();
-          console.log(this.formData);
+          this.formData = new Comments();
+          this.ngOnInit();
         }, 3000);
       } else {
         this.tostrService.error(res.message, 'Başarısız', {

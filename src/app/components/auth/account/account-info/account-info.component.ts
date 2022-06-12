@@ -1,25 +1,21 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DxFormComponent } from 'devextreme-angular';
-import notify from 'devextreme/ui/notify';
 import { ToastrService } from 'ngx-toastr';
-import { IpServiceService } from '../../shared/service/ip-service.service';
-import { RegisterModel } from '../auth.model';
-import { AuthService } from '../auth.service';
+import { IpServiceService } from 'src/app/components/shared/service/ip-service.service';
+import { RegisterModel } from '../../auth.model';
+import { AuthService } from '../../auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  selector: 'app-account-info',
+  templateUrl: './account-info.component.html',
+  styleUrls: ['./account-info.component.css'],
 })
-export class RegisterComponent implements OnInit {
+export class AccountInfoComponent implements OnInit {
   isLoad = false;
   saveButtonOptions: any = [];
   formData: RegisterModel;
   password = '';
   ipAddress: string;
-
-  @ViewChild(DxFormComponent, { static: false }) form: DxFormComponent;
 
   constructor(
     private authService: AuthService,

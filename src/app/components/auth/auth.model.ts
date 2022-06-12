@@ -18,6 +18,7 @@ export class RegisterModel {
 
 export class AccessToken {
   userName: string;
+  userId: number;
   token: string;
   expiration: Date;
 }

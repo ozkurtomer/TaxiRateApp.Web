@@ -1,12 +1,35 @@
 ::ng-deep #gridContainer .dx-toolbar .dx-texteditor {
-  width: 100% !important;
+  width: 99% !important;
+  margin-right: 0.99rem !important;
+  margin-top: 0.02rem !important;
 }
 
 ::ng-deep #gridContainer .dx-toolbar .dx-toolbar-after {
   padding-left: 0px;
-  width: 100% !important;
+  width: 99% !important;
+  margin-right: 0.99rem !important;
+  margin-top: 0.3rem !important;
+}
+.blog_info_left_grid {
+  position: relative;
+  overflow: hidden;
 }
 
-::ng-deep #gridContainer .dx-datagrid-search-panel {
-  margin: 0.3rem;
+.blog_info_left_grid img {
+  -moz-transition: all 1s;
+  -o-transition: all 1s;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  background: #ebecec;
+  padding: 0.4em;
+}
+
+.blog-grid-top {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 1em;
+}
+
+.blured-img {
+  filter: blur(4px);
+  -webkit-filter: blur(4px);
 }

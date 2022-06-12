@@ -3,64 +3,75 @@
 <div
   *ngIf="dataLoaded"
   class="container border"
-  style="margin-top: 10rem; border-radius: 1rem"
+  style="margin-top: 5rem; border-radius: 1rem"
 >
-  <dx-data-grid
-    id="gridContainer"
-    #dataGrid
-    [dataSource]="postDataSource"
-    keyExpr="post_Id"
-    height="600px"
-    noDataText="Veri Bulunamadı"
-  >
-    <dxo-search-panel
-      [visible]="true"
-      [placeholder]="'Ara...'"
-      [(text)]="searchText"
-      (textChange)="onSearchTextChange()"
-    ></dxo-search-panel>
+  <div class="row">
+    <div class="blog_info_left_grid blog-grid-top text-center">
+      <img
+        src="../../../../assets/img/taxi.png"
+        class="img-fluid blured-img rounded"
+        alt=""
+      />
+    </div>
 
-    <dxo-scrolling mode="virtual"></dxo-scrolling>
-
-    <dxo-filter-row [visible]="true"></dxo-filter-row>
-
-    <dxo-paging [pageSize]="100"></dxo-paging>
-
-    <dxo-pager
-      [visible]="true"
-      [allowedPageSizes]="[100, 150, 200, 250, 300]"
-      [displayMode]="'full'"
-      [showPageSizeSelector]="true"
-      [showInfo]="true"
-      [showNavigationButtons]="true"
+    <dx-data-grid
+      id="gridContainer"
+      #dataGrid
+      [dataSource]="postDataSource"
+      keyExpr="post_Id"
+      height="600px"
+      noDataText="Veri Bulunamadı"
     >
-    </dxo-pager>
+      <dxo-search-panel
+        [visible]="true"
+        [placeholder]="'Ara...'"
+        [(text)]="searchText"
+        (textChange)="onSearchTextChange()"
+      ></dxo-search-panel>
 
-    <dxi-column dataField="post_Id" [visible]="false"> </dxi-column>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
 
-    <dxi-column dataField="user_Id" [visible]="false"> </dxi-column>
+      <dxo-filter-row [visible]="true"></dxo-filter-row>
 
-    <dxi-column dataField="city_Id" [visible]="false"> </dxi-column>
+      <dxo-paging [pageSize]="10"></dxo-paging>
 
-    <dxi-column dataField="city.city_Name" caption="Şehir" dataType="string">
-    </dxi-column>
-
-    <dxi-column dataField="post_Plate" dataType="string" caption="Plaka">
-    </dxi-column>
-
-    <dxi-column dataField="post_Title" dataType="string" caption="Başlık">
-    </dxi-column>
-
-    <dxi-column dataField="post_Description" caption="Açıklama"> </dxi-column>
-
-    <dxi-column type="buttons" caption="İncele" alignment="left" width="60">
-      <dxi-button
-        text="İncele"
-        hint="İncele"
-        icon="search"
-        [onClick]="detailClick"
+      <dxo-pager
+        [visible]="true"
+        [allowedPageSizes]="[10, 20, 50, 100]"
+        [displayMode]="'full'"
+        [showPageSizeSelector]="true"
+        [showInfo]="true"
+        [showNavigationButtons]="true"
+        infoText="Sayfa {0} Toplam: {1} sayfa. ({2} kayıt)"
       >
-      </dxi-button>
-    </dxi-column>
-  </dx-data-grid>
+      </dxo-pager>
+
+      <dxi-column dataField="post_Id" [visible]="false"> </dxi-column>
+
+      <dxi-column dataField="user_Id" [visible]="false"> </dxi-column>
+
+      <dxi-column dataField="city_Id" [visible]="false"> </dxi-column>
+
+      <dxi-column dataField="city.city_Name" caption="Şehir" dataType="string">
+      </dxi-column>
+
+      <dxi-column dataField="post_Plate" dataType="string" caption="Plaka">
+      </dxi-column>
+
+      <dxi-column dataField="post_Title" dataType="string" caption="Başlık">
+      </dxi-column>
+
+      <dxi-column dataField="post_Description" caption="Açıklama"> </dxi-column>
+
+      <dxi-column type="buttons" caption="İncele" alignment="left" width="60">
+        <dxi-button
+          text="İncele"
+          hint="İncele"
+          icon="search"
+          [onClick]="detailClick"
+        >
+        </dxi-button>
+      </dxi-column>
+    </dx-data-grid>
+  </div>
 </div>

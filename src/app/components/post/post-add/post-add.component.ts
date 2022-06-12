@@ -1,31 +1,36 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { UUID } from 'angular2-uuid';
 import { ToastrService } from 'ngx-toastr';
-import { RegisterModel } from '../../auth/auth.model';
+import { RegisterModel, User } from '../../auth/auth.model';
 import { AuthService } from '../../auth/auth.service';
+import { Cities } from '../../city/city.model';
+import { CityService } from '../../city/city.service';
 import { IpServiceService } from '../../shared/service/ip-service.service';
-import { Comments, Post } from '../post.model';
+import { Post } from '../post.model';
 import { PostService } from '../post.service';
 
 @Component({
-  selector: 'app-post-detail',
-  templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css'],
+  selector: 'app-post-add',
+  templateUrl: './post-add.component.html',
+  styleUrls: ['./post-add.component.css'],
 })
-export class PostDetailComponent implements OnInit {
-  postId: string;
-  post: Post = null;
-  dataLoaded: boolean = false;
+export class PostAddComponent implements OnInit {
+  formData: Post;
+  likeCount: number = 0;
+  cityId: number = 0;
+  isLoad: boolean = false;
   saveButtonOptions: any = [];
-  formData: Comments;
+  selectBoxEditorOptions: any = [];
+  cities: Cities[] = this.fillCities();
   ipAddress: string;
 
   constructor(
-    private route: ActivatedRoute,
+    private cityService: CityService,
     private postService: PostService,
     private tostrService: ToastrService,
+    private router: Router,
     private ipService: IpServiceService,
     private authService: AuthService,
     private jwtHelper: JwtHelperService
@@ -35,7 +40,7 @@ export class PostDetailComponent implements OnInit {
     });
 
     this.saveButtonOptions = {
-      text: 'Yorumu Gönder',
+      text: 'Paylaş',
       type: 'default',
       stylingMode: 'outlined',
       useSubmitBehavior: true,
@@ -43,22 +48,40 @@ export class PostDetailComponent implements OnInit {
         'btn btn-block btn-lg text-body button-border justify-content-center mt-4',
       onClick: function () {},
     };
+
+    this.selectBoxEditorOptions = {
+      items: this.cities,
+      stylingMode: 'filled',
+      dataField: 'city_Id',
+      placeholder: 'Şehir Seçiniz',
+      searchEnabled: true,
+      displayExpr: 'city_Name',
+      valueExpr: 'city_Id',
+      onValueChanged: this.setCityId.bind(this),
+    };
   }
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((item) => {
-      this.getDetailWithId(item.get('id')!);
+  ngOnInit(): void {}
+
+  setCityId(e): void {
+    this.cityId = e.value;
+  }
+
+  fillCities(): any {
+    let object: any = [];
+    this.cityService.getAllCities().subscribe((data) => {
+      this.cities = data.data;
+      this.cities.forEach((element) => {
+        object.push({ city_Id: element.city_Id, city_Name: element.city_Name });
+      });
+      this.isLoad = true;
     });
+    return object;
   }
 
-  getDetailWithId(postId: string) {
-    this.postService.getDetailWithId(postId).subscribe((res) => {
-      this.post = res.data;
-      this.dataLoaded = true;
-    });
+  setLikeCount(likeCount: number) {
+    this.likeCount = likeCount;
   }
-
-  updatePostLikeCount() {}
 
   async createUser(): Promise<any> {
     return new Promise((resolve) => {
@@ -75,7 +98,6 @@ export class PostDetailComponent implements OnInit {
   }
 
   async onFormSubmit(e) {
-    this.formData.post_Id = this.post.post_Id;
     const token: any = this.jwtHelper.decodeToken(
       localStorage.getItem('token')
     );
@@ -87,10 +109,13 @@ export class PostDetailComponent implements OnInit {
       });
     }
 
-    this.formData.user_Id = userId;
-    debugger;
+    this.formData.post_LikeCount = this.likeCount;
+    this.formData.city_Id = this.cityId;
+    this.formData.post_CreatedDate = new Date();
 
-    this.postService.saveComment(this.formData).subscribe((res) => {
+    this.formData.user_Id = userId;
+
+    this.postService.savePost(this.formData).subscribe((res) => {
       if (res.success) {
         this.tostrService.success(res.message, 'Başarılı', {
           progressAnimation: 'decreasing',
@@ -98,8 +123,7 @@ export class PostDetailComponent implements OnInit {
           timeOut: 3000,
         });
         setTimeout(() => {
-          this.formData = new Comments();
-          this.ngOnInit();
+          this.router.navigate(['/home']);
         }, 3000);
       } else {
         this.tostrService.error(res.message, 'Başarısız', {
@@ -109,5 +133,7 @@ export class PostDetailComponent implements OnInit {
         });
       }
     });
+
+    e.preventDefault();
   }
 }

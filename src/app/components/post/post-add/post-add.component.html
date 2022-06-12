@@ -1,0 +1,157 @@
+<app-navbar></app-navbar>
+<section class="vh-100 ubuntu-font" *ngIf="isLoad">
+  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container">
+      <div
+        class="row d-flex justify-content-center align-items-center h-100 p-5"
+      >
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card shadow" style="border-radius: 15px">
+            <div class="card-body">
+              <h2 class="text-uppercase text-center mb-2">Gönderi Paylaş</h2>
+
+              <form class="login-form" (submit)="onFormSubmit($event)">
+                <dx-form id="form" [(formData)]="formData">
+                  <dxi-item
+                    dataField="City_Id"
+                    editorType="dxSelectBox"
+                    [editorOptions]="selectBoxEditorOptions"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Bu alan boş geçilemez."
+                    ></dxi-validation-rule>
+
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="Post_Plate"
+                    editorType="dxTextBox"
+                    style="text-transform: uppercase"
+                    [editorOptions]="{
+                      stylingMode: 'filled',
+                      elementAttr: { class: 'mt-4' },
+                      placeholder: '34XYZ123',
+                      maxLength: 8
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Bu alan boş geçilemez."
+                    ></dxi-validation-rule>
+
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="Post_Title"
+                    editorType="dxTextBox"
+                    [editorOptions]="{
+                      placeholder: 'Başlık',
+                      elementAttr: { class: 'form-text mt-4' }
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Bu alan boş geçilemez."
+                    ></dxi-validation-rule>
+
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="Post_Description"
+                    editorType="dxTextArea"
+                    [editorOptions]="{
+                      placeholder: 'Açıklama',
+                      height: '15rem',
+                      elementAttr: { class: 'form-text mt-4' }
+                    }"
+                  >
+                    <dxi-validation-rule
+                      type="required"
+                      message="Bu alan boş geçilemez."
+                    ></dxi-validation-rule>
+
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    dataField="Post_Stars"
+                    editorType="dxTextArea"
+                    itemTemplate="customTemplate"
+                    [editorOptions]="{
+                      elementAttr: { class: 'form-text mt-4 mb-5' }
+                    }"
+                  >
+                    <div *dxTemplate="let item of 'customTemplate'">
+                      <div class="rating">
+                        <input
+                          type="radio"
+                          name="rating"
+                          id="rating-5"
+                          (click)="setLikeCount(5)"
+                        />
+                        <label for="rating-5"></label>
+
+                        <input
+                          type="radio"
+                          name="rating"
+                          id="rating-4"
+                          (click)="setLikeCount(4)"
+                        />
+                        <label for="rating-4"></label>
+
+                        <input
+                          type="radio"
+                          name="rating"
+                          id="rating-3"
+                          (click)="setLikeCount(3)"
+                        />
+                        <label for="rating-3"></label>
+
+                        <input
+                          type="radio"
+                          name="rating"
+                          id="rating-2"
+                          (click)="setLikeCount(2)"
+                        />
+                        <label for="rating-2"></label>
+
+                        <input
+                          type="radio"
+                          name="rating"
+                          id="rating-1"
+                          (click)="setLikeCount(1)"
+                        />
+                        <label for="rating-1"></label>
+                      </div>
+                    </div>
+                    <dxo-label [visible]="false"></dxo-label>
+                  </dxi-item>
+
+                  <dxi-item
+                    itemType="button"
+                    horizontalAlignment="center"
+                    class="mt-5"
+                    [buttonOptions]="saveButtonOptions"
+                  >
+                    <dxo-button-options
+                      text="Paylaş"
+                      width="100%"
+                      useSubmitBehavior="true"
+                      onClick=""
+                      class="mt-5"
+                    >
+                    </dxo-button-options>
+                  </dxi-item>
+                </dx-form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

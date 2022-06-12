@@ -41,6 +41,13 @@ export class PostService {
     );
   }
 
+  savePost(post: Post): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      environment.apiUrl + '/Posts/add',
+      post
+    );
+  }
+
   saveComment(comment: Comments): Observable<ResponseModel> {
     return this.httpClient.post<ResponseModel>(
       environment.apiUrl + '/comment/add',

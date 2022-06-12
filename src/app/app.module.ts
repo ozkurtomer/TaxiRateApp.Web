@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -24,12 +24,20 @@ import {
   DxToolbarModule,
   DxDataGridModule,
   DxTextAreaModule,
+  DxSelectBoxModule,
+  DxCheckBoxModule,
 } from 'devextreme-angular';
 import { PostAllComponent } from './components/post/post-all/post-all.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 import { PostDetailComponent } from './components/post/post-detail/post-detail.component';
 import { CommentListComponent } from './components/comment/comment-list/comment-list.component';
+import { PostAddComponent } from './components/post/post-add/post-add.component';
+import { JwtModule } from '@auth0/angular-jwt';
+import { AccountMainComponent } from './components/auth/account/account-main/account-main.component';
+import { AccountPostComponent } from './components/auth/account/account-post/account-post.component';
+import { AccountInfoComponent } from './components/auth/account/account-info/account-info.component';
+import { GlobalErrorHandler } from './components/shared/Error/globalErrorHandler';
 
 @NgModule({
   declarations: [
@@ -45,6 +53,10 @@ import { CommentListComponent } from './components/comment/comment-list/comment-
     PostAllComponent,
     PostDetailComponent,
     CommentListComponent,
+    PostAddComponent,
+    AccountMainComponent,
+    AccountPostComponent,
+    AccountInfoComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,8 +67,12 @@ import { CommentListComponent } from './components/comment/comment-list/comment-
     ReactiveFormsModule,
 
     CommonModule,
-    BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('token'),
+      },
+    }),
 
     DxButtonModule,
     DxFormModule,
@@ -66,8 +82,17 @@ import { CommentListComponent } from './components/comment/comment-list/comment-
     DxToolbarModule,
     DxDataGridModule,
     DxTextAreaModule,
+    DxCheckBoxModule,
+    DxSelectBoxModule,
+    DxNumberBoxModule,
+    DxFormModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

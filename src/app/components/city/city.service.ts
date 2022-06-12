@@ -16,4 +16,10 @@ export class CityService {
       environment.apiUrl + '/Cities/getpopularfivecity'
     );
   }
+
+  getAllCities(): Observable<ListResponseModel<Cities>> {
+    return this.httpClient.get<ListResponseModel<Cities>>(
+      environment.apiUrl + '/Cities/GetAll'
+    );
+  }
 }

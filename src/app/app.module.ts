@@ -37,7 +37,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AccountMainComponent } from './components/auth/account/account-main/account-main.component';
 import { AccountPostComponent } from './components/auth/account/account-post/account-post.component';
 import { AccountInfoComponent } from './components/auth/account/account-info/account-info.component';
-import { GlobalErrorHandler } from './components/shared/Error/globalErrorHandler';
 
 @NgModule({
   declarations: [
@@ -87,12 +86,7 @@ import { GlobalErrorHandler } from './components/shared/Error/globalErrorHandler
     DxNumberBoxModule,
     DxFormModule,
   ],
-  providers: [
-    {
-      provide: ErrorHandler,
-      useClass: GlobalErrorHandler,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

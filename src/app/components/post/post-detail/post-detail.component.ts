@@ -58,7 +58,26 @@ export class PostDetailComponent implements OnInit {
     });
   }
 
-  updatePostLikeCount() {}
+  updatePostLikeCount() {
+    this.post.post_LikeCount = this.post.post_LikeCount + 1;
+    debugger;
+    this.postService.updatePostLikeCount(this.post).subscribe((res) => {
+      if (res.success) {
+        this.tostrService.success(res.message, 'Başarılı', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
+        this.ngOnInit();
+      } else {
+        this.tostrService.error(res.message, 'Başarısız', {
+          progressAnimation: 'decreasing',
+          progressBar: true,
+          timeOut: 3000,
+        });
+      }
+    });
+  }
 
   async createUser(): Promise<any> {
     return new Promise((resolve) => {

@@ -1,9 +1,7 @@
 export class LoginModel {
-  formData(formData: any) {
-    throw new Error('Method not implemented.');
-  }
   UserEmail: string;
   UserPassword: string;
+  rememberMe: boolean;
 }
 
 export class RegisterModel {
@@ -28,6 +26,7 @@ export class User {
   user_Name: string;
   user_UserName: string;
   user_Email: string;
+  user_Password: string;
   user_PasswordHash: string;
   user_PasswordSalt: string;
   user_Ip: string;

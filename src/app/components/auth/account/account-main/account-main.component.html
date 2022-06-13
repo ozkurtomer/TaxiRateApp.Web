@@ -37,6 +37,7 @@
 
     <div class="col-md-9">
       <app-account-post
+        [userId]="userId"
         *ngIf="selectedItem === 'Gönderilerim'"
       ></app-account-post>
       <app-account-info

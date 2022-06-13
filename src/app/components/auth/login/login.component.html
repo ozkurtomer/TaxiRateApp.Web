@@ -53,6 +53,7 @@
                   <dxi-item
                     dataField="rememberMe"
                     editorType="dxCheckBox"
+                    value="rememberMe"
                     [editorOptions]="{
                       text: 'Beni Hatırla',
                       elementAttr: { class: 'form-text mt-4' }
@@ -76,7 +77,7 @@
                     >
                     </dxo-button-options>
                   </dxi-item>
-                  <dxi-item>
+                  <dxi-item [visible]="false">
                     <div class="link">
                       <a routerLink="/reset-password">Şifremi unuttum?</a>
                     </div>

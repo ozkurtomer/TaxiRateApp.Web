@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import notify from 'devextreme/ui/notify';
-import { DxFormComponent } from 'devextreme-angular';
 import { LoginModel } from '../auth.model';
-import { elementAt } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import dxBarGauge from 'devextreme/viz/bar_gauge';
 
 @Component({
   selector: 'app-login',
@@ -16,6 +14,7 @@ export class LoginComponent implements OnInit {
   isLoad = false;
   saveButtonOptions: any = [];
   formData: LoginModel;
+  rememberMe: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -31,11 +30,18 @@ export class LoginComponent implements OnInit {
         'btn btn-block btn-lg text-body button-border justify-content-center mt-4',
       onClick: function () {},
     };
+
     this.isLoad = true;
   }
 
   ngOnInit(): void {
     this.isLoad = false;
+    debugger;
+    if (localStorage.getItem('rememberMe')) {
+      this.formData = new LoginModel();
+      this.formData.rememberMe = true;
+      this.formData.UserEmail = localStorage.getItem('email');
+    }
   }
 
   buttonOptions: any = {
@@ -52,7 +58,10 @@ export class LoginComponent implements OnInit {
           progressBar: true,
           timeOut: 3000,
         });
-
+        if (this.formData.rememberMe) {
+          localStorage.setItem('rememberMe', 'true');
+          localStorage.setItem('email', this.formData.UserEmail);
+        }
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('userName', res.data.userName);
         this.router.navigate(['/home']);

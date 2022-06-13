@@ -27,6 +27,12 @@ export class PostService {
     );
   }
 
+  getPostUser(userId: number): Observable<ListResponseModel<Post>> {
+    return this.httpClient.get<ListResponseModel<Post>>(
+      environment.apiUrl + '/Posts/getpostsuser?userId=' + userId
+    );
+  }
+
   getPostsWithPlateNo(plateNo: string): Observable<ListResponseModel<Post[]>> {
     return this.httpClient.post<ListResponseModel<Post[]>>(
       environment.apiUrl + '/Posts/getpostswithplateno',
@@ -52,6 +58,13 @@ export class PostService {
     return this.httpClient.post<ResponseModel>(
       environment.apiUrl + '/comment/add',
       comment
+    );
+  }
+
+  updatePostLikeCount(post: Post): Observable<ResponseModel> {
+    return this.httpClient.post<ResponseModel>(
+      environment.apiUrl + '/posts/update',
+      post
     );
   }
 }

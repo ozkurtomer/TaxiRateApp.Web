@@ -1,32 +1,36 @@
-<section class="ubuntu-font">
+<section class="ubuntu-font mt-5">
   <div class="">
     <div class="row justify-content-left">
       <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-        <div class="card shadow" style="border-radius: 15px; width: 70rem">
+        <div class="card shadow" style="border-radius: 15px">
           <div class="card-body">
             <h2 class="text-uppercase text-center mb-2">Bilgiler</h2>
 
             <form class="create-account-form" (submit)="onFormSubmit($event)">
               <dx-form id="form" [(formData)]="formData">
                 <dxi-item
-                  dataField="UserName"
+                  dataField="user_Id"
+                  editorType="dxNumberBox"
+                  [visible]="false"
+                ></dxi-item>
+
+                <dxi-item
+                  dataField="user_Name"
                   editorType="dxTextBox"
                   [editorOptions]="{
                     stylingMode: 'filled',
-                    placeholder: 'Kullanıcı Adı',
                     mode: 'text',
                     elementAttr: { class: 'mt-4' }
                   }"
                 >
-                  <dxo-label [visible]="false"></dxo-label>
+                  <dxo-label [visible]="true" text="Kullanıcı Adı"></dxo-label>
                 </dxi-item>
 
                 <dxi-item
-                  dataField="UserUserName"
+                  dataField="user_UserName"
                   editorType="dxTextBox"
                   [editorOptions]="{
                     stylingMode: 'filled',
-                    placeholder: 'Adınız',
                     mode: 'text',
                     elementAttr: { class: 'mt-4' }
                   }"
@@ -35,15 +39,14 @@
                     type="required"
                     message="Adınız alanı zorunludur."
                   ></dxi-validation-rule>
-                  <dxo-label [visible]="false"></dxo-label>
+                  <dxo-label [visible]="true" text="Adınız"></dxo-label>
                 </dxi-item>
 
                 <dxi-item
-                  dataField="UserEmail"
+                  dataField="user_Email"
                   editorType="dxTextBox"
                   [editorOptions]="{
                     stylingMode: 'filled',
-                    placeholder: 'E-Posta',
                     mode: 'email',
                     elementAttr: { class: 'mt-4' }
                   }"
@@ -56,47 +59,68 @@
                     type="email"
                     message="Geçersiz E-Posta formatı."
                   ></dxi-validation-rule>
-                  <dxo-label [visible]="false"></dxo-label>
+                  <dxo-label [visible]="true" text="E-Posta"></dxo-label>
                 </dxi-item>
 
                 <dxi-item
-                  dataField="UserPassword"
+                  dataField="user_Password"
                   editorType="dxTextBox"
+                  value="123456"
                   [editorOptions]="{
                     stylingMode: 'filled',
-                    placeholder: 'Şifre',
                     mode: 'password',
                     elementAttr: { class: 'mt-4' }
                   }"
                 >
-                  <dxi-validation-rule
-                    type="required"
-                    message="Şifre alanı zorunludur"
-                  ></dxi-validation-rule>
-                  <dxo-label [visible]="false"></dxo-label>
+                  <dxo-label [visible]="true" text="Şifre"></dxo-label>
                 </dxi-item>
 
                 <dxi-item
-                  dataField="UserRePassword"
+                  dataField="user_PasswordHash"
                   editorType="dxTextBox"
-                  [editorOptions]="{
-                    stylingMode: 'filled',
-                    placeholder: 'Şifre Tekrarı',
-                    mode: 'password',
-                    elementAttr: { class: 'mt-4' }
-                  }"
+                  disabled="true"
+                  [visible]="false"
                 >
-                  <dxi-validation-rule
-                    type="required"
-                    message="Şifre Tekrarı alanı zorunludur."
-                  ></dxi-validation-rule>
-                  <dxi-validation-rule
-                    type="custom"
-                    message="Girdiğiniz şifreler uyuşmuyor."
-                    [validationCallback]="confirmPassword"
-                  >
-                  </dxi-validation-rule>
-                  <dxo-label [visible]="false"></dxo-label>
+                </dxi-item>
+
+                <dxi-item
+                  dataField="user_PasswordSalt"
+                  editorType="dxTextBox"
+                  disabled="true"
+                  [visible]="false"
+                >
+                </dxi-item>
+
+                <dxi-item
+                  dataField="user_Ip"
+                  editorType="dxTextBox"
+                  disabled="true"
+                  [visible]="false"
+                >
+                </dxi-item>
+
+                <dxi-item
+                  dataField="user_Anonymous"
+                  editorType="dxTextBox"
+                  disabled="true"
+                  [visible]="false"
+                >
+                </dxi-item>
+
+                <dxi-item
+                  dataField="user_CreatedDate"
+                  editorType="dxTextBox"
+                  disabled="true"
+                  [visible]="false"
+                >
+                </dxi-item>
+
+                <dxi-item
+                  dataField="user_IsActive"
+                  editorType="dxTextBox"
+                  disabled="true"
+                  [visible]="false"
+                >
                 </dxi-item>
 
                 <dxi-item
@@ -105,7 +129,7 @@
                   [buttonOptions]="saveButtonOptions"
                 >
                   <dxo-button-options
-                    text="Kayıt Ol"
+                    text="Güncelle"
                     width="40%"
                     useSubmitBehavior="true"
                     stylingMode="outlined"

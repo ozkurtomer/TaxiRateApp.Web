@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { IpServiceService } from 'src/app/components/shared/service/ip-service.service';
-import { RegisterModel } from '../../auth.model';
+import { RegisterModel, User } from '../../auth.model';
 import { AuthService } from '../../auth.service';
+import { AccountService } from '../account.service';
 
 @Component({
   selector: 'app-account-info',
@@ -13,7 +15,7 @@ import { AuthService } from '../../auth.service';
 export class AccountInfoComponent implements OnInit {
   isLoad = false;
   saveButtonOptions: any = [];
-  formData: RegisterModel;
+  formData: User;
   password = '';
   ipAddress: string;
 
@@ -21,7 +23,9 @@ export class AccountInfoComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private tostrService: ToastrService,
-    private ipService: IpServiceService
+    private ipService: IpServiceService,
+    private accountService: AccountService,
+    private jwtHelper: JwtHelperService
   ) {
     this.ipService.getIPAddress().subscribe((data: any) => {
       this.ipAddress = data.ip;
@@ -29,7 +33,7 @@ export class AccountInfoComponent implements OnInit {
 
     this.isLoad = true;
     this.saveButtonOptions = {
-      text: 'Kayıt Ol',
+      text: 'Güncelle',
       type: 'default',
       stylingMode: 'outlined',
       useSubmitBehavior: true,
@@ -40,17 +44,26 @@ export class AccountInfoComponent implements OnInit {
     this.isLoad = true;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getUserInfo();
+  }
 
-  confirmPassword = (e: { value: string }) => {
-    return e.value === this.formData.UserPassword;
-  };
+  getUserInfo() {
+    let lcToken = localStorage.getItem('token');
+    let token = this.jwtHelper.decodeToken(lcToken);
+    this.accountService.getUserInfo(Number(token.iss)).subscribe((res) => {
+      this.formData = res.data;
+      this.formData.user_Password = '123456';
+      console.log(res.data);
+      this.isLoad = false;
+    });
+  }
 
   onFormSubmit(e) {
     e.preventDefault();
-    this.formData.UserIpAddress = this.ipAddress;
+    this.formData.user_Ip = this.ipAddress;
 
-    this.authService.register(this.formData).subscribe((res) => {
+    this.accountService.updateUserInfo(this.formData).subscribe((res) => {
       if (res.success) {
         this.tostrService.success(res.message, 'Başarılı', {
           progressAnimation: 'decreasing',
@@ -58,7 +71,6 @@ export class AccountInfoComponent implements OnInit {
           timeOut: 3000,
         });
 
-        localStorage.setItem('token', res.data.token);
         this.router.navigate(['/home']);
       } else {
         this.tostrService.error(res.message, 'Başarısız', {

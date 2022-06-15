@@ -24,9 +24,35 @@
             <td>{{ post.post_Plate }}</td>
 
             <td>
-              <!-- @for (int i = 0; i < item.Post_Stars; i++) { -->
-              <i id="star" class="fas fa-star more-star"></i>
-              <!-- } -->
+              <div *ngIf="post.post_Stars === 1">
+                <i class="star" class="fas fa-star more-star"></i>
+              </div>
+
+              <div *ngIf="post.post_Stars === 2">
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+              </div>
+
+              <div *ngIf="post.post_Stars === 3">
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+              </div>
+
+              <div *ngIf="post.post_Stars === 4">
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+              </div>
+
+              <div *ngIf="post.post_Stars === 5">
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+                <i class="star" class="fas fa-star more-star"></i>
+              </div>
             </td>
 
             <td>

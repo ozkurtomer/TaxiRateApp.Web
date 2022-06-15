@@ -109,7 +109,8 @@ export class PostAddComponent implements OnInit {
       });
     }
 
-    this.formData.post_LikeCount = this.likeCount;
+    this.formData.post_Stars = this.likeCount;
+    this.formData.post_LikeCount = 0;
     this.formData.city_Id = this.cityId;
     this.formData.post_CreatedDate = new Date();
 

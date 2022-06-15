@@ -24,6 +24,7 @@ export class PostLastFiveComponent implements OnInit {
         this.posts = response.data;
         this.dataCount = response.data.length;
         this.dataLoaded = true;
+        console.log(this.posts[0].post_Stars);
       }
     });
   }

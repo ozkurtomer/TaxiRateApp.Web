@@ -36,7 +36,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoad = false;
-    debugger;
     if (localStorage.getItem('rememberMe')) {
       this.formData = new LoginModel();
       this.formData.rememberMe = true;
